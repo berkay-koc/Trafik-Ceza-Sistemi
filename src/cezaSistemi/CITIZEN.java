@@ -57,19 +57,19 @@ public class CITIZEN {
 		panel_1.setLayout(null);
 		tabbedPane.addTab("Sorgulama", null, panel_1, null);
 		
-		JLabel lblNewLabel_3 = new JLabel("TC Kimlik Numaras\u0131");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(240, 11, 180, 25);
-		panel_1.add(lblNewLabel_3);
+		JLabel TCKN_giris = new JLabel("TC Kimlik Numaras\u0131");
+		TCKN_giris.setHorizontalAlignment(SwingConstants.CENTER);
+		TCKN_giris.setBounds(240, 11, 180, 25);
+		panel_1.add(TCKN_giris);
 		
 		JFormattedTextField formattedTextField_3 = new JFormattedTextField();
 		formattedTextField_3.setHorizontalAlignment(SwingConstants.CENTER);
 		formattedTextField_3.setBounds(240, 42, 180, 25);
 		panel_1.add(formattedTextField_3);
 		
-		JButton btnNewButton_1 = new JButton("Ceza Sorgula");
-		btnNewButton_1.setBounds(88, 84, 169, 25);
-		panel_1.add(btnNewButton_1);
+		JButton cezaSor = new JButton("Ceza Sorgula");
+		cezaSor.setBounds(88, 84, 169, 25);
+		panel_1.add(cezaSor);
 		
 		JButton btnNewButton_2 = new JButton("Bor\u00E7 Sorgula");
 		btnNewButton_2.setBounds(405, 84, 177, 24);

@@ -83,10 +83,10 @@ public class POLICE {
 		btnNewButton.setBounds(292, 393, 89, 23);
 		panel.add(btnNewButton);
 		
-		JLabel lblNewLabel = new JLabel("\u0130sim");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(240, 32, 180, 14);
-		panel.add(lblNewLabel);
+		JLabel isimLbl = new JLabel("\u0130sim");
+		isimLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		isimLbl.setBounds(240, 32, 180, 14);
+		panel.add(isimLbl);
 		
 		JFormattedTextField formattedTextField_1_1 = new JFormattedTextField();
 		formattedTextField_1_1.setBounds(240, 114, 180, 20);
