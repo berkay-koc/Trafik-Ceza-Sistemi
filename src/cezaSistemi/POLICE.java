@@ -92,20 +92,20 @@ public class POLICE {
 		formattedTextField_1_1.setBounds(240, 114, 180, 20);
 		panel.add(formattedTextField_1_1);
 		
-		JLabel lblSoyisim = new JLabel("Soyisim");
-		lblSoyisim.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSoyisim.setBounds(240, 89, 180, 14);
-		panel.add(lblSoyisim);
+		JLabel soyisimLbl = new JLabel("Soyisim");
+		soyisimLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		soyisimLbl.setBounds(240, 89, 180, 14);
+		panel.add(soyisimLbl);
 		
-		JLabel lblNewLabel_1 = new JLabel("TC Kimlik Numaras\u0131");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(240, 151, 180, 14);
-		panel.add(lblNewLabel_1);
+		JLabel tcknLbl = new JLabel("TC Kimlik Numaras\u0131");
+		tcknLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		tcknLbl.setBounds(240, 151, 180, 14);
+		panel.add(tcknLbl);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Plaka");
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1.setBounds(240, 199, 180, 14);
-		panel.add(lblNewLabel_1_1);
+		JLabel plakaLbl = new JLabel("Plaka");
+		plakaLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		plakaLbl.setBounds(240, 199, 180, 14);
+		panel.add(plakaLbl);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("Ara\u00E7 Tipi");
 		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
