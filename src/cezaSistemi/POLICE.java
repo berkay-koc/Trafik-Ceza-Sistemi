@@ -18,7 +18,7 @@ import javax.swing.DefaultComboBoxModel;
 
 public class POLICE {
 
-	private JFrame frame;
+	private JFrame frmTrafikCezaSistemi;
 	private JTable table;
 	private JTable table_1;
 
@@ -30,7 +30,7 @@ public class POLICE {
 			public void run() {
 				try {
 					POLICE window = new POLICE();
-					window.frame.setVisible(true);
+					window.frmTrafikCezaSistemi.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,118 +49,119 @@ public class POLICE {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 658, 535);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmTrafikCezaSistemi = new JFrame();
+		frmTrafikCezaSistemi.setTitle("Trafik Ceza Sistemi");
+		frmTrafikCezaSistemi.setBounds(100, 100, 658, 535);
+		frmTrafikCezaSistemi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmTrafikCezaSistemi.getContentPane().setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, 0, 642, 496);
-		frame.getContentPane().add(tabbedPane);
+		frmTrafikCezaSistemi.getContentPane().add(tabbedPane);
 		
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("Yeni Ceza Kayd\u0131", null, panel, null);
-		panel.setLayout(null);
+		JPanel cezaKayit = new JPanel();
+		tabbedPane.addTab("Yeni Ceza Kayd\u0131", null, cezaKayit, null);
+		cezaKayit.setLayout(null);
 		
-		JFormattedTextField formattedTextField = new JFormattedTextField();
-		formattedTextField.setBounds(240, 57, 180, 20);
-		panel.add(formattedTextField);
+		JFormattedTextField isimField = new JFormattedTextField();
+		isimField.setBounds(240, 57, 180, 20);
+		cezaKayit.add(isimField);
 		
-		JFormattedTextField formattedTextField_1 = new JFormattedTextField();
-		formattedTextField_1.setBounds(240, 176, 180, 20);
-		panel.add(formattedTextField_1);
+		JFormattedTextField soyisimField = new JFormattedTextField();
+		soyisimField.setBounds(240, 114, 180, 20);
+		cezaKayit.add(soyisimField);
 		
-		JFormattedTextField formattedTextField_2 = new JFormattedTextField();
-		formattedTextField_2.setBounds(240, 224, 180, 20);
-		panel.add(formattedTextField_2);
+		JFormattedTextField tcknField = new JFormattedTextField();
+		tcknField.setBounds(240, 176, 180, 20);
+		cezaKayit.add(tcknField);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Araba", "Motorsiklet", "Kamyon", "T\u0131r"}));
-		comboBox.setBounds(240, 281, 180, 20);
-		panel.add(comboBox);
+		JFormattedTextField plakaField = new JFormattedTextField();
+		plakaField.setBounds(240, 224, 180, 20);
+		cezaKayit.add(plakaField);
 		
-		JButton btnNewButton = new JButton("Ekle");
-		btnNewButton.setBounds(292, 393, 89, 23);
-		panel.add(btnNewButton);
+		JComboBox aractipiBox = new JComboBox();
+		aractipiBox.setModel(new DefaultComboBoxModel(new String[] {"Araba", "Motorsiklet", "Kamyon", "T\u0131r"}));
+		aractipiBox.setBounds(240, 281, 180, 20);
+		cezaKayit.add(aractipiBox);
+		
+		JButton cezakayitButton = new JButton("Ekle");
+		cezakayitButton.setBounds(292, 393, 89, 23);
+		cezaKayit.add(cezakayitButton);
 		
 		JLabel isimLbl = new JLabel("\u0130sim");
 		isimLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		isimLbl.setBounds(240, 32, 180, 14);
-		panel.add(isimLbl);
-		
-		JFormattedTextField formattedTextField_1_1 = new JFormattedTextField();
-		formattedTextField_1_1.setBounds(240, 114, 180, 20);
-		panel.add(formattedTextField_1_1);
+		cezaKayit.add(isimLbl);
 		
 		JLabel soyisimLbl = new JLabel("Soyisim");
 		soyisimLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		soyisimLbl.setBounds(240, 89, 180, 14);
-		panel.add(soyisimLbl);
+		cezaKayit.add(soyisimLbl);
 		
 		JLabel tcknLbl = new JLabel("TC Kimlik Numaras\u0131");
 		tcknLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		tcknLbl.setBounds(240, 151, 180, 14);
-		panel.add(tcknLbl);
+		cezaKayit.add(tcknLbl);
 		
 		JLabel plakaLbl = new JLabel("Plaka");
 		plakaLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		plakaLbl.setBounds(240, 199, 180, 14);
-		panel.add(plakaLbl);
+		cezaKayit.add(plakaLbl);
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Ara\u00E7 Tipi");
-		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1_1.setBounds(240, 256, 180, 14);
-		panel.add(lblNewLabel_1_1_1);
+		JLabel aractipLbl = new JLabel("Ara\u00E7 Tipi");
+		aractipLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		aractipLbl.setBounds(240, 256, 180, 14);
+		cezaKayit.add(aractipLbl);
 		
-		JLabel lblNewLabel_1_1_1_1 = new JLabel("Ceza Sebebi");
-		lblNewLabel_1_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1_1_1.setBounds(240, 317, 180, 14);
-		panel.add(lblNewLabel_1_1_1_1);
+		JLabel cezatipLbl = new JLabel("Ceza Sebebi");
+		cezatipLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		cezatipLbl.setBounds(240, 317, 180, 14);
+		cezaKayit.add(cezatipLbl);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(240, 337, 180, 20);
-		panel.add(comboBox_1);
+		JComboBox cezatipiBox = new JComboBox();
+		cezatipiBox.setBounds(240, 337, 180, 20);
+		cezaKayit.add(cezatipiBox);
 		
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("Sorgulama", null, panel_1, null);
-		panel_1.setLayout(null);
+		JPanel sorgu = new JPanel();
+		tabbedPane.addTab("Sorgulama", null, sorgu, null);
+		sorgu.setLayout(null);
 		
 		JLabel lblNewLabel_3 = new JLabel("TC Kimlik Numaras\u0131");
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_3.setBounds(240, 11, 180, 25);
-		panel_1.add(lblNewLabel_3);
+		sorgu.add(lblNewLabel_3);
 		
 		JFormattedTextField formattedTextField_3 = new JFormattedTextField();
 		formattedTextField_3.setHorizontalAlignment(SwingConstants.CENTER);
 		formattedTextField_3.setBounds(240, 42, 180, 25);
-		panel_1.add(formattedTextField_3);
+		sorgu.add(formattedTextField_3);
 		
 		JButton btnNewButton_1 = new JButton("Ceza Sorgula");
 		btnNewButton_1.setBounds(88, 84, 169, 25);
-		panel_1.add(btnNewButton_1);
+		sorgu.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Bor\u00E7 Sorgula");
 		btnNewButton_2.setBounds(405, 84, 177, 24);
-		panel_1.add(btnNewButton_2);
+		sorgu.add(btnNewButton_2);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(17, 120, 310, 337);
-		panel_1.add(scrollPane);
+		sorgu.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
 		JTextPane textPane = new JTextPane();
 		textPane.setBounds(405, 124, 177, 25);
-		panel_1.add(textPane);
+		sorgu.add(textPane);
 		
-		JPanel panel_3 = new JPanel();
-		tabbedPane.addTab("Ceza Tipleri Tablosu", null, panel_3, null);
-		panel_3.setLayout(null);
+		JPanel cezaTipleri = new JPanel();
+		tabbedPane.addTab("Ceza Tipleri Tablosu", null, cezaTipleri, null);
+		cezaTipleri.setLayout(null);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(0, 0, 637, 468);
-		panel_3.add(scrollPane_1);
+		cezaTipleri.add(scrollPane_1);
 		
 		table_1 = new JTable();
 		scrollPane_1.setViewportView(table_1);

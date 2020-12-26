@@ -15,7 +15,7 @@ import javax.swing.JComboBox;
 
 public class CITIZEN {
 
-	private JFrame frame;
+	private JFrame frmTrafikCezaSistemi;
 
 	/**
 	 * Launch the application.
@@ -25,7 +25,7 @@ public class CITIZEN {
 			public void run() {
 				try {
 					CITIZEN window = new CITIZEN();
-					window.frame.setVisible(true);
+					window.frmTrafikCezaSistemi.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -44,14 +44,15 @@ public class CITIZEN {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 658, 535);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmTrafikCezaSistemi = new JFrame();
+		frmTrafikCezaSistemi.setTitle("Trafik Ceza Sistemi");
+		frmTrafikCezaSistemi.setBounds(100, 100, 658, 535);
+		frmTrafikCezaSistemi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmTrafikCezaSistemi.getContentPane().setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, 0, 642, 496);
-		frame.getContentPane().add(tabbedPane);
+		frmTrafikCezaSistemi.getContentPane().add(tabbedPane);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
