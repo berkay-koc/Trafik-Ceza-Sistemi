@@ -15,17 +15,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class POLICE {
 
 	private JFrame frmTrafikCezaSistemi;
-	private JTable table;
-	private JTable table_1;
+	private JTable yenilencezaTable;
+	private JTable cezaTipTable;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
+	
+	public static void police() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -38,17 +38,14 @@ public class POLICE {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
+	
 	public POLICE() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+	
 	private void initialize() {
+		
 		frmTrafikCezaSistemi = new JFrame();
 		frmTrafikCezaSistemi.setTitle("Trafik Ceza Sistemi");
 		frmTrafikCezaSistemi.setBounds(100, 100, 658, 535);
@@ -126,61 +123,65 @@ public class POLICE {
 		tabbedPane.addTab("Sorgulama", null, sorgu, null);
 		sorgu.setLayout(null);
 		
-		JLabel lblNewLabel_3 = new JLabel("TC Kimlik Numaras\u0131");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(240, 11, 180, 25);
-		sorgu.add(lblNewLabel_3);
+		JLabel tcknSorguLbl = new JLabel("TC Kimlik Numaras\u0131");
+		tcknSorguLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		tcknSorguLbl.setBounds(240, 11, 180, 25);
+		sorgu.add(tcknSorguLbl);
 		
-		JFormattedTextField formattedTextField_3 = new JFormattedTextField();
-		formattedTextField_3.setHorizontalAlignment(SwingConstants.CENTER);
-		formattedTextField_3.setBounds(240, 42, 180, 25);
-		sorgu.add(formattedTextField_3);
+		JFormattedTextField tcknSorguField = new JFormattedTextField();
+		tcknSorguField.setHorizontalAlignment(SwingConstants.CENTER);
+		tcknSorguField.setBounds(240, 42, 180, 25);
+		sorgu.add(tcknSorguField);
 		
-		JButton btnNewButton_1 = new JButton("Ceza Sorgula");
-		btnNewButton_1.setBounds(88, 84, 169, 25);
-		sorgu.add(btnNewButton_1);
+		JButton cezaSorButton = new JButton("Ceza Sorgula");
+		cezaSorButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		cezaSorButton.setBounds(88, 84, 169, 25);
+		sorgu.add(cezaSorButton);
 		
-		JButton btnNewButton_2 = new JButton("Bor\u00E7 Sorgula");
-		btnNewButton_2.setBounds(405, 84, 177, 24);
-		sorgu.add(btnNewButton_2);
+		JButton borcSorButton = new JButton("Bor\u00E7 Sorgula");
+		borcSorButton.setBounds(405, 84, 177, 24);
+		sorgu.add(borcSorButton);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(17, 120, 310, 337);
-		sorgu.add(scrollPane);
+		JScrollPane yenilencezaScroll = new JScrollPane();
+		yenilencezaScroll.setBounds(17, 120, 310, 337);
+		sorgu.add(yenilencezaScroll);
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		yenilencezaTable = new JTable();
+		yenilencezaScroll.setViewportView(yenilencezaTable);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(405, 124, 177, 25);
-		sorgu.add(textPane);
+		JTextPane borcSorText = new JTextPane();
+		borcSorText.setBounds(405, 124, 177, 25);
+		sorgu.add(borcSorText);
 		
 		JPanel cezaTipleri = new JPanel();
 		tabbedPane.addTab("Ceza Tipleri Tablosu", null, cezaTipleri, null);
 		cezaTipleri.setLayout(null);
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(0, 0, 637, 468);
-		cezaTipleri.add(scrollPane_1);
+		JScrollPane cezaTipScroll = new JScrollPane();
+		cezaTipScroll.setBounds(0, 0, 637, 468);
+		cezaTipleri.add(cezaTipScroll);
 		
-		table_1 = new JTable();
-		scrollPane_1.setViewportView(table_1);
+		cezaTipTable = new JTable();
+		cezaTipScroll.setViewportView(cezaTipTable);
 		
 		JPanel panel_4 = new JPanel();
 		tabbedPane.addTab("Borç ödeme", null, panel_4, null);
 		panel_4.setLayout(null);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(180, 80, 246, 22);
-		panel_4.add(comboBox_2);
+		JLabel cezaOdeLbl = new JLabel("\u00D6demek \u0130stedi\u011Finiz Ceza");
+		cezaOdeLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		cezaOdeLbl.setBounds(180, 47, 246, 22);
+		panel_4.add(cezaOdeLbl);
 		
-		JLabel lblNewLabel_2 = new JLabel("\u00D6demek \u0130stedi\u011Finiz Ceza");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(180, 47, 246, 22);
-		panel_4.add(lblNewLabel_2);
+		JComboBox cezaOdeBox = new JComboBox();
+		cezaOdeBox.setBounds(180, 80, 246, 22);
+		panel_4.add(cezaOdeBox);
 		
-		JButton btnNewButton_3 = new JButton("\u00D6de");
-		btnNewButton_3.setBounds(238, 113, 133, 22);
-		panel_4.add(btnNewButton_3);
+		JButton cezaOdeButton = new JButton("\u00D6de");
+		cezaOdeButton.setBounds(238, 113, 133, 22);
+		panel_4.add(cezaOdeButton);
 	}
 }

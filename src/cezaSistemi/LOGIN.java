@@ -12,13 +12,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class LOGIN {
-	final String url = "jdbc:postgresql://loaclhost:5432/TCS";
-	final String user = "postgres";
-	final String password = "1234";
 	
 	private JFrame frmTrafikCezaSistemi;
 
-	public static void main(String[] args) {
+	public static void login() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -33,18 +30,6 @@ public class LOGIN {
 
 	public LOGIN() {
 		initialize();
-	}
-
-	private void connect(){ 
-		try(Connection connection = DriverManager.getConnection(url,user,password);){
-			if(connection != null){
-				System.out.println("Connected!");
-			}else{
-		   System.out.println("Failed!");
-			}
-		}catch(Exception e){
-			e.printStackTrace();
-		}
 	}
 	
 	private void initialize() {
@@ -67,7 +52,13 @@ public class LOGIN {
 		JButton girisButton = new JButton("Giri\u015F");
 		girisButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				String tckn = tcknField.getText();
+				Queries.kimlikno = tcknField.getText();
+				try {
+					Queries.login_control(tckn);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		girisButton.setBounds(157, 171, 89, 23);

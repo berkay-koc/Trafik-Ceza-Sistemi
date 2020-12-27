@@ -12,15 +12,20 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.table.DefaultTableModel;
 
 public class CITIZEN {
 
 	private JFrame frmTrafikCezaSistemi;
+	static JTable cezaSorTable;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void citizen() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -58,48 +63,52 @@ public class CITIZEN {
 		panel_1.setLayout(null);
 		tabbedPane.addTab("Sorgulama", null, panel_1, null);
 		
-		JLabel TCKN_giris = new JLabel("TC Kimlik Numaras\u0131");
-		TCKN_giris.setHorizontalAlignment(SwingConstants.CENTER);
-		TCKN_giris.setBounds(240, 11, 180, 25);
-		panel_1.add(TCKN_giris);
+		JButton cezaSorButton = new JButton("Ceza Sorgula");
+		cezaSorButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		cezaSorButton.setBounds(230, 63, 169, 25);
+		panel_1.add(cezaSorButton);
 		
-		JFormattedTextField formattedTextField_3 = new JFormattedTextField();
-		formattedTextField_3.setHorizontalAlignment(SwingConstants.CENTER);
-		formattedTextField_3.setBounds(240, 42, 180, 25);
-		panel_1.add(formattedTextField_3);
+		JButton borcSorButton = new JButton("Bor\u00E7 Sorgula");
+		borcSorButton.setBounds(450, 28, 177, 24);
+		panel_1.add(borcSorButton);
 		
-		JButton cezaSor = new JButton("Ceza Sorgula");
-		cezaSor.setBounds(88, 84, 169, 25);
-		panel_1.add(cezaSor);
+		JScrollPane cezaSorScroll = new JScrollPane();
+		cezaSorScroll.setBounds(10, 99, 617, 358);
+		panel_1.add(cezaSorScroll);
 		
-		JButton btnNewButton_2 = new JButton("Bor\u00E7 Sorgula");
-		btnNewButton_2.setBounds(405, 84, 177, 24);
-		panel_1.add(btnNewButton_2);
+		cezaSorTable = new JTable();
+		cezaSorTable.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Ceza ID", "Ýsim", "Soyisim", "Ceza Sebebi", "Ceza Ücreti", "Son Ödeme Tarihi", "Plaka"
+			}
+		));
+		cezaSorScroll.setViewportView(cezaSorTable);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(17, 120, 310, 337);
-		panel_1.add(scrollPane);
-		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(405, 124, 177, 25);
-		panel_1.add(textPane);
+		JTextPane borcSorText = new JTextPane();
+		borcSorText.setBounds(450, 63, 177, 25);
+		panel_1.add(borcSorText);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setLayout(null);
 		tabbedPane.addTab("Ceza Ödeme", null, panel_4, null);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(180, 80, 246, 22);
-		panel_4.add(comboBox_2);
+		JLabel cezaOdeLbl = new JLabel("\u00D6demek \u0130stedi\u011Finiz Ceza");
+		cezaOdeLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		cezaOdeLbl.setBounds(180, 47, 246, 22);
+		panel_4.add(cezaOdeLbl);
 		
-		JLabel lblNewLabel_2 = new JLabel("\u00D6demek \u0130stedi\u011Finiz Ceza");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(180, 47, 246, 22);
-		panel_4.add(lblNewLabel_2);
+		JComboBox cezaOdeBox = new JComboBox();
+		cezaOdeBox.setBounds(180, 80, 246, 22);
+		panel_4.add(cezaOdeBox);
 		
-		JButton btnNewButton_3 = new JButton("\u00D6de");
-		btnNewButton_3.setBounds(238, 113, 133, 22);
-		panel_4.add(btnNewButton_3);
+		JButton cezaOdeButton = new JButton("\u00D6de");
+		cezaOdeButton.setBounds(238, 113, 133, 22);
+		panel_4.add(cezaOdeButton);
 	}
-
 }
