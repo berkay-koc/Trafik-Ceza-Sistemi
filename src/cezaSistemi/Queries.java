@@ -42,10 +42,11 @@ public class Queries {
 		Statement s = conn.createStatement();
 		ResultSet r = s.executeQuery(query);
 		r.next();
-
+		
 		if(r.getLong(1)==1){
 			POLICE p = new POLICE();
 			p.police();
+			
 		}else if(r.getLong(1)==2){
 			CITIZEN c = new CITIZEN();
 			c.citizen();

@@ -34,6 +34,7 @@ public class POLICE {
 				try {
 					POLICE window = new POLICE();
 					window.frmTrafikCezaSistemi.setVisible(true);
+					Queries.cezaTablosuInsert();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -44,6 +45,7 @@ public class POLICE {
 	
 	public POLICE() {
 		initialize();
+		
 	}
 
 	
