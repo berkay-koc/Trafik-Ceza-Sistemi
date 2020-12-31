@@ -16,14 +16,17 @@ import javax.swing.JTable;
 import javax.swing.JTextPane;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
 
 public class POLICE {
 
-	private JFrame frmTrafikCezaSistemi;
-	private JTable yenilencezaTable;
-	private JTable cezaTipTable;
-
+	public JFrame frmTrafikCezaSistemi;
+	public static JTable yenilencezaTable;
+	public static JTable cezaTipTable;
+	public static JLabel borcSorField;
 	
 	public static void police() {
 		EventQueue.invokeLater(new Runnable() {
@@ -136,12 +139,38 @@ public class POLICE {
 		JButton cezaSorButton = new JButton("Ceza Sorgula");
 		cezaSorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String kimlikNo = tcknSorguField.getText();
+				yenilencezaTable.setModel(new DefaultTableModel(
+						new Object[][] {
+						},
+						new String[] {
+							"Ceza ID", "Ýsim", "Soyisim", "Ceza Sebebi", "Ceza Ücreti", "Son Ödeme Tarihi", "Plaka"
+						}
+					));
+				try {
+					Queries.cezaSorgula_Police(kimlikNo);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				
+				}
 			}
 		});
 		cezaSorButton.setBounds(88, 84, 169, 25);
 		sorgu.add(cezaSorButton);
 		
 		JButton borcSorButton = new JButton("Bor\u00E7 Sorgula");
+		borcSorButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String kimlikNo = tcknSorguField.getText();
+				try {
+					Queries.borcSorgula_Citizen(kimlikNo);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		borcSorButton.setBounds(405, 84, 177, 24);
 		sorgu.add(borcSorButton);
 		
@@ -150,11 +179,20 @@ public class POLICE {
 		sorgu.add(yenilencezaScroll);
 		
 		yenilencezaTable = new JTable();
+		yenilencezaTable.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+					"Ceza ID", "Ýsim", "Soyisim", "Ceza Sebebi", "Ceza Ücreti", "Son Ödeme Tarihi", "Plaka"
+			}
+		));
 		yenilencezaScroll.setViewportView(yenilencezaTable);
 		
-		JTextPane borcSorText = new JTextPane();
-		borcSorText.setBounds(405, 124, 177, 25);
-		sorgu.add(borcSorText);
+		borcSorField = new JLabel("");
+		borcSorField.setBackground(Color.LIGHT_GRAY);
+		borcSorField.setForeground(Color.BLACK);
+		borcSorField.setBounds(350, 119, 277, 25);
+		sorgu.add(borcSorField);
 		
 		JPanel cezaTipleri = new JPanel();
 		tabbedPane.addTab("Ceza Tipleri Tablosu", null, cezaTipleri, null);

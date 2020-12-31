@@ -70,8 +70,46 @@ public class Queries {
 		DefaultTableModel model = (DefaultTableModel)CITIZEN.cezaSorTable.getModel();
 		
 		while(r.next()) {
-			model.addRow();
+			Object[] buffer = new Object[] {r.getLong(1), r.getString(2), r.getString(3), r.getString(4), r.getInt(5), r.getDate(6), r.getString(7)};
+			model.addRow(buffer);
 		}
+		//r.getLong(1), r.getString(2), r.getString(3), r.getString(4), r.getInt(4), r.getDate(5), r.getString(6)
+		s.close();
+		conn.close();
+	}
+	
+	public static void cezaSorgula_Police(String kimlikno) throws SQLException {
+		try{
+			conn = DriverManager.getConnection(url,user,password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		String query = "SELECT * FROM ceza_sor("+kimlikno+")";
+		Statement s = conn.createStatement();
+		ResultSet r = s.executeQuery(query);
+		DefaultTableModel model = (DefaultTableModel)POLICE.yenilencezaTable.getModel();
+		
+		while(r.next()) {
+			Object[] buffer = new Object[] {r.getLong(1), r.getString(2), r.getString(3), r.getString(4), r.getInt(5), r.getDate(6), r.getString(7)};
+			model.addRow(buffer);
+		}
+		//r.getLong(1), r.getString(2), r.getString(3), r.getString(4), r.getInt(4), r.getDate(5), r.getString(6)
+		s.close();
+		conn.close();
+	}
+	
+	public static void borcSorgula_Citizen(String kimlikno) throws SQLException {
+		try{
+			conn = DriverManager.getConnection(url,user,password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		String query = "SELECT * FROM borc_sor("+kimlikno+")";
+		Statement s = conn.createStatement();
+		ResultSet r = s.executeQuery(query);
+		r.next();
+		String text = r.getString(1);
+		POLICE.borcSorField.setText(text);
 		
 		s.close();
 		conn.close();

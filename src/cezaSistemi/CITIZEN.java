@@ -14,6 +14,7 @@ import javax.swing.JTextPane;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.table.DefaultTableModel;
 
@@ -66,13 +67,33 @@ public class CITIZEN {
 		JButton cezaSorButton = new JButton("Ceza Sorgula");
 		cezaSorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				cezaSorTable.setModel(new DefaultTableModel(
+						new Object[][] {
+						},
+						new String[] {
+							"Ceza ID", "Ýsim", "Soyisim", "Ceza Sebebi", "Ceza Ücreti", "Son Ödeme Tarihi", "Plaka"
+						}
+					));
+				try {
+					Queries.cezaSorgula_Citizen();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				//cezaSorButton.setEnabled(false);
 			}
+			
 		});
 		cezaSorButton.setBounds(230, 63, 169, 25);
 		panel_1.add(cezaSorButton);
 		
-		JButton borcSorButton = new JButton("Bor\u00E7 Sorgula");
+		JButton borcSorButton = new JButton("Borç Sorgula");
+		borcSorButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
 		borcSorButton.setBounds(450, 28, 177, 24);
 		panel_1.add(borcSorButton);
 		
@@ -91,6 +112,7 @@ public class CITIZEN {
 		cezaSorScroll.setViewportView(cezaSorTable);
 		
 		JTextPane borcSorText = new JTextPane();
+		borcSorText.setEditable(false);
 		borcSorText.setBounds(450, 63, 177, 25);
 		panel_1.add(borcSorText);
 		
