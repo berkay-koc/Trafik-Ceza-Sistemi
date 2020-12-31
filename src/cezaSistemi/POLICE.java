@@ -203,6 +203,14 @@ public class POLICE {
 		cezaTipleri.add(cezaTipScroll);
 		
 		cezaTipTable = new JTable();
+		cezaTipTable.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Ceza Numarasý", "Ceza Ýsmi"
+			}
+			
+		));
 		cezaTipScroll.setViewportView(cezaTipTable);
 		
 		JPanel panel_4 = new JPanel();

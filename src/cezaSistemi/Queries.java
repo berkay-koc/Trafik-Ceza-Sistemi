@@ -25,7 +25,6 @@ public class Queries {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
 		LOGIN l = new LOGIN();
 		l.login();
 		
@@ -43,7 +42,7 @@ public class Queries {
 		Statement s = conn.createStatement();
 		ResultSet r = s.executeQuery(query);
 		r.next();
-		
+
 		if(r.getLong(1)==1){
 			POLICE p = new POLICE();
 			p.police();
@@ -115,4 +114,34 @@ public class Queries {
 		conn.close();
 	}
 	
+	public static void cezaTablosuInsert() throws SQLException{
+		try{
+			conn = DriverManager.getConnection(url,user,password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		String query = "SELECT * FROM ceza";
+		Statement s = conn.createStatement();
+		ResultSet r = s.executeQuery(query);
+		DefaultTableModel model = (DefaultTableModel)POLICE.cezaTipTable.getModel();
+		while(r.next()) {
+			Object[] buffer = new Object[] {r.getInt(1), r.getString(2)};
+			model.addRow(buffer);
+		}
+		
+		
+		s.close();
+		conn.close();
+		
+	}
 }
+
+
+
+
+
+
+
+
+

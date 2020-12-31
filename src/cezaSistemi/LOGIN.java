@@ -24,6 +24,7 @@ public class LOGIN {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
 		});
 	}
@@ -57,6 +58,12 @@ public class LOGIN {
 				try {
 					Queries.login_control(tckn);
 				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				try {
+					Queries.cezaTablosuInsert();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
