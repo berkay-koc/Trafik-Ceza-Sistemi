@@ -27,6 +27,13 @@ public class POLICE {
 	public static JTable yenilencezaTable;
 	public static JTable cezaTipTable;
 	public static JLabel borcSorField;
+	public static JFormattedTextField isimField;
+	public static JFormattedTextField soyisimField;
+	public static JFormattedTextField tcknField;
+	public static JFormattedTextField plakaField;
+	public static JComboBox aractipiBox;
+	public static JComboBox cezatipiBox;
+	public static String kimlikNo; //check
 	
 	public static void police() {
 		EventQueue.invokeLater(new Runnable() {
@@ -35,6 +42,7 @@ public class POLICE {
 					POLICE window = new POLICE();
 					window.frmTrafikCezaSistemi.setVisible(true);
 					Queries.cezaTablosuInsert();
+					Queries.insertCezalarToComboBox();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,28 +73,42 @@ public class POLICE {
 		tabbedPane.addTab("Yeni Ceza Kayd\u0131", null, cezaKayit, null);
 		cezaKayit.setLayout(null);
 		
-		JFormattedTextField isimField = new JFormattedTextField();
+		isimField = new JFormattedTextField();
 		isimField.setBounds(240, 57, 180, 20);
 		cezaKayit.add(isimField);
 		
-		JFormattedTextField soyisimField = new JFormattedTextField();
+		soyisimField = new JFormattedTextField();
 		soyisimField.setBounds(240, 114, 180, 20);
 		cezaKayit.add(soyisimField);
 		
-		JFormattedTextField tcknField = new JFormattedTextField();
+		tcknField = new JFormattedTextField();
 		tcknField.setBounds(240, 176, 180, 20);
 		cezaKayit.add(tcknField);
 		
-		JFormattedTextField plakaField = new JFormattedTextField();
+		plakaField = new JFormattedTextField();
 		plakaField.setBounds(240, 224, 180, 20);
 		cezaKayit.add(plakaField);
 		
-		JComboBox aractipiBox = new JComboBox();
+		aractipiBox = new JComboBox();
 		aractipiBox.setModel(new DefaultComboBoxModel(new String[] {"Araba", "Motorsiklet", "Kamyon", "T\u0131r"}));
 		aractipiBox.setBounds(240, 281, 180, 20);
 		cezaKayit.add(aractipiBox);
 		
+		cezatipiBox = new JComboBox();
+		cezatipiBox.setBounds(240, 337, 180, 20);
+		cezaKayit.add(cezatipiBox);
+		
 		JButton cezakayitButton = new JButton("Ekle");
+		cezakayitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Queries.yeniCezaEkle(kimlikNo);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		cezakayitButton.setBounds(292, 393, 89, 23);
 		cezaKayit.add(cezakayitButton);
 		
@@ -120,9 +142,6 @@ public class POLICE {
 		cezatipLbl.setBounds(240, 317, 180, 14);
 		cezaKayit.add(cezatipLbl);
 		
-		JComboBox cezatipiBox = new JComboBox();
-		cezatipiBox.setBounds(240, 337, 180, 20);
-		cezaKayit.add(cezatipiBox);
 		
 		JPanel sorgu = new JPanel();
 		tabbedPane.addTab("Sorgulama", null, sorgu, null);
@@ -141,7 +160,7 @@ public class POLICE {
 		JButton cezaSorButton = new JButton("Ceza Sorgula");
 		cezaSorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String kimlikNo = tcknSorguField.getText();
+				kimlikNo = tcknSorguField.getText();
 				yenilencezaTable.setModel(new DefaultTableModel(
 						new Object[][] {
 						},
@@ -232,4 +251,6 @@ public class POLICE {
 		cezaOdeButton.setBounds(238, 113, 133, 22);
 		panel_4.add(cezaOdeButton);
 	}
+	
+	
 }
