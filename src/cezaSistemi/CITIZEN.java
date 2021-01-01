@@ -22,7 +22,8 @@ public class CITIZEN {
 
 	private JFrame frmTrafikCezaSistemi;
 	static JTable cezaSorTable;
-
+	static JComboBox cezaOdeBox;
+	static JTextPane borcSorText;
 	/**
 	 * Launch the application.
 	 */
@@ -31,6 +32,7 @@ public class CITIZEN {
 			public void run() {
 				try {
 					CITIZEN window = new CITIZEN();
+					Queries.insertBorclarToComboBox_Citizen();
 					window.frmTrafikCezaSistemi.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -90,8 +92,12 @@ public class CITIZEN {
 		JButton borcSorButton = new JButton("Borç Sorgula");
 		borcSorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				try {
+					Queries.borcSorgula_Citizen();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		borcSorButton.setBounds(450, 28, 177, 24);
@@ -111,7 +117,7 @@ public class CITIZEN {
 		));
 		cezaSorScroll.setViewportView(cezaSorTable);
 		
-		JTextPane borcSorText = new JTextPane();
+		borcSorText = new JTextPane();
 		borcSorText.setEditable(false);
 		borcSorText.setBounds(450, 63, 177, 25);
 		panel_1.add(borcSorText);
@@ -125,11 +131,21 @@ public class CITIZEN {
 		cezaOdeLbl.setBounds(180, 47, 246, 22);
 		panel_4.add(cezaOdeLbl);
 		
-		JComboBox cezaOdeBox = new JComboBox();
+		cezaOdeBox = new JComboBox();
 		cezaOdeBox.setBounds(180, 80, 246, 22);
 		panel_4.add(cezaOdeBox);
 		
 		JButton cezaOdeButton = new JButton("\u00D6de");
+		cezaOdeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Queries.borcOde_Citizen();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		cezaOdeButton.setBounds(238, 113, 133, 22);
 		panel_4.add(cezaOdeButton);
 	}

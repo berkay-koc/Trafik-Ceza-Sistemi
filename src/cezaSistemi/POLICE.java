@@ -20,20 +20,25 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
+import javax.swing.JTextField;
 
 public class POLICE {
 
-	public JFrame frmTrafikCezaSistemi;
-	public static JTable yenilencezaTable;
-	public static JTable cezaTipTable;
-	public static JLabel borcSorField;
-	public static JFormattedTextField isimField;
-	public static JFormattedTextField soyisimField;
-	public static JFormattedTextField tcknField;
-	public static JFormattedTextField plakaField;
-	public static JComboBox aractipiBox;
-	public static JComboBox cezatipiBox;
-	public static String kimlikNo; //check
+	JFrame frmTrafikCezaSistemi;
+	static JTable yenilencezaTable;
+	static JTable cezaTipTable;
+	static JLabel borcSorField;
+	static JFormattedTextField isimField;
+	static JFormattedTextField soyisimField;
+	static JFormattedTextField tcknField;
+	static JFormattedTextField plakaField;
+	static JComboBox aractipiBox;
+	static JComboBox cezatipiBox;
+	static String kimlikNo;
+	static JComboBox cezaOdeBox;
+	static JFormattedTextField tcknSorguField;
+	static JTextField textField;
+	static JTextField textField_1;
 	
 	public static void police() {
 		EventQueue.invokeLater(new Runnable() {
@@ -43,6 +48,7 @@ public class POLICE {
 					window.frmTrafikCezaSistemi.setVisible(true);
 					Queries.cezaTablosuInsert();
 					Queries.insertCezalarToComboBox();
+					Queries.insertBorclarToComboBox_Police();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -102,7 +108,7 @@ public class POLICE {
 		cezakayitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Queries.yeniCezaEkle(kimlikNo);
+					Queries.yeniCezaEkle();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -152,7 +158,7 @@ public class POLICE {
 		tcknSorguLbl.setBounds(240, 11, 180, 25);
 		sorgu.add(tcknSorguLbl);
 		
-		JFormattedTextField tcknSorguField = new JFormattedTextField();
+		tcknSorguField = new JFormattedTextField();
 		tcknSorguField.setHorizontalAlignment(SwingConstants.CENTER);
 		tcknSorguField.setBounds(240, 42, 180, 25);
 		sorgu.add(tcknSorguField);
@@ -177,7 +183,7 @@ public class POLICE {
 				}
 			}
 		});
-		cezaSorButton.setBounds(88, 84, 169, 25);
+		cezaSorButton.setBounds(121, 84, 169, 25);
 		sorgu.add(cezaSorButton);
 		
 		JButton borcSorButton = new JButton("Bor\u00E7 Sorgula");
@@ -185,18 +191,18 @@ public class POLICE {
 			public void actionPerformed(ActionEvent e) {
 				String kimlikNo = tcknSorguField.getText();
 				try {
-					Queries.borcSorgula_Citizen(kimlikNo);
+					Queries.borcSorgula_Police();
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		borcSorButton.setBounds(405, 84, 177, 24);
+		borcSorButton.setBounds(450, 84, 177, 24);
 		sorgu.add(borcSorButton);
 		
 		JScrollPane yenilencezaScroll = new JScrollPane();
-		yenilencezaScroll.setBounds(17, 120, 310, 337);
+		yenilencezaScroll.setBounds(17, 120, 384, 337);
 		sorgu.add(yenilencezaScroll);
 		
 		yenilencezaTable = new JTable();
@@ -210,9 +216,10 @@ public class POLICE {
 		yenilencezaScroll.setViewportView(yenilencezaTable);
 		
 		borcSorField = new JLabel("");
-		borcSorField.setBackground(Color.LIGHT_GRAY);
+		borcSorField.setHorizontalAlignment(SwingConstants.CENTER);
+		borcSorField.setBackground(Color.WHITE);
 		borcSorField.setForeground(Color.BLACK);
-		borcSorField.setBounds(350, 119, 277, 25);
+		borcSorField.setBounds(492, 119, 98, 25);
 		sorgu.add(borcSorField);
 		
 		JPanel cezaTipleri = new JPanel();
@@ -243,14 +250,60 @@ public class POLICE {
 		cezaOdeLbl.setBounds(180, 47, 246, 22);
 		panel_4.add(cezaOdeLbl);
 		
-		JComboBox cezaOdeBox = new JComboBox();
+		cezaOdeBox = new JComboBox();
 		cezaOdeBox.setBounds(180, 80, 246, 22);
 		panel_4.add(cezaOdeBox);
 		
 		JButton cezaOdeButton = new JButton("\u00D6de");
+		cezaOdeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Queries.borcOde_Police();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		cezaOdeButton.setBounds(238, 113, 133, 22);
 		panel_4.add(cezaOdeButton);
+		
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("Tayin", null, panel, null);
+		panel.setLayout(null);
+		
+		JButton btnNewButton = new JButton("Atama Yap");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Queries.atamaYap();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnNewButton.setBounds(257, 146, 122, 23);
+		panel.add(btnNewButton);
+		
+		textField = new JTextField();
+		textField.setBounds(218, 49, 193, 29);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(218, 106, 193, 29);
+		panel.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Polis TCKN");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(257, 22, 122, 27);
+		panel.add(lblNewLabel);
+		
+		JLabel lblAtanlacakYer = new JLabel("Atan\u0131lacak Yer");
+		lblAtanlacakYer.setHorizontalAlignment(SwingConstants.CENTER);
+		lblAtanlacakYer.setBounds(257, 78, 122, 27);
+		panel.add(lblAtanlacakYer);
 	}
-	
-	
 }

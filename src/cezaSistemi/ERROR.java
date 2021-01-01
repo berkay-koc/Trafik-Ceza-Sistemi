@@ -31,9 +31,9 @@ public class ERROR {
 	
 	private void initialize(String hataMesaji) {
 		frmHata = new JFrame();
-		frmHata.setTitle("HATA!");
+		frmHata.setTitle("B\u0130LG\u0130LEND\u0130RME");
 		frmHata.setBounds(100, 100, 500, 300);
-		frmHata.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmHata.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmHata.getContentPane().setLayout(null);
 		
 		JLabel hataLbl = new JLabel(hataMesaji);

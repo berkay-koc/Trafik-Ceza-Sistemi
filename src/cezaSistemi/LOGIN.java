@@ -57,13 +57,8 @@ public class LOGIN {
 				Queries.kimlikno = tcknField.getText();
 				try {
 					Queries.login_control(tckn);
+					frmTrafikCezaSistemi.dispose();
 				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-				try {
-					Queries.cezaTablosuInsert();
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
