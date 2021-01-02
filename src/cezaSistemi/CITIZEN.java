@@ -73,7 +73,7 @@ public class CITIZEN {
 						new Object[][] {
 						},
 						new String[] {
-							"Ceza ID", "Ýsim", "Soyisim", "Ceza Sebebi", "Ceza Ücreti", "Son Ödeme Tarihi", "Plaka"
+								"Ceza ID", "\u0130sim", "Soyisim", "Ceza Sebebi", "Ceza \u00DCcreti", "Kesilme Tarihi", "Son \u00D6deme Tarihi", "Plaka"
 						}
 					));
 				try {
@@ -112,7 +112,7 @@ public class CITIZEN {
 			new Object[][] {
 			},
 			new String[] {
-				"Ceza ID", "Ýsim", "Soyisim", "Ceza Sebebi", "Ceza Ücreti", "Son Ödeme Tarihi", "Plaka"
+				"Ceza ID", "\u0130sim", "Soyisim", "Ceza Sebebi", "Ceza \u00DCcreti", "Kesilme Tarihi", "Son \u00D6deme Tarihi", "Plaka"
 			}
 		));
 		cezaSorScroll.setViewportView(cezaSorTable);

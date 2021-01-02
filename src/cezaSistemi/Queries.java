@@ -1,6 +1,8 @@
 package cezaSistemi;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -70,7 +72,7 @@ public class Queries {
 		DefaultTableModel model = (DefaultTableModel)CITIZEN.cezaSorTable.getModel();
 		
 		while(r.next()) {
-			Object[] buffer = new Object[] {r.getLong(1), r.getString(2), r.getString(3), r.getString(4), r.getInt(5), r.getDate(6), r.getString(7)};
+			Object[] buffer = new Object[] {r.getLong(1), r.getString(2), r.getString(3), r.getString(4), r.getInt(5), r.getDate(6), r.getString(7), r.getString(8)};
 			model.addRow(buffer);
 		}
 		//r.getLong(1), r.getString(2), r.getString(3), r.getString(4), r.getInt(4), r.getDate(5), r.getString(6)
@@ -90,7 +92,7 @@ public class Queries {
 		DefaultTableModel model = (DefaultTableModel)POLICE.yenilencezaTable.getModel();
 		
 		while(r.next()) {
-			Object[] buffer = new Object[] {r.getLong(1), r.getString(2), r.getString(3), r.getString(4), r.getInt(5), r.getDate(6), r.getString(7)};
+			Object[] buffer = new Object[] {r.getLong(1), r.getString(2), r.getString(3), r.getString(4), r.getInt(5), r.getDate(6), r.getString(7), r.getString(8)};
 			model.addRow(buffer);
 		}
 		s.close();
@@ -168,14 +170,18 @@ public class Queries {
 		String aracTipi = POLICE.aractipiBox.getSelectedItem().toString();
 		String cezaTipi = POLICE.cezatipiBox.getSelectedItem().toString();
 		
-		System.out.println(isim + soyisim + tckn + plaka + aracTipi);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c = Calendar.getInstance();
 		
-		long milli = System.currentTimeMillis();
-		java.sql.Date date = new java.sql.Date(milli);
+		String query0 = "SELECT odemesuresi FROM cezalar WHERE cezaismi = '"+cezaTipi+"'";
+		Statement s = conn.createStatement();
+		ResultSet r = s.executeQuery(query0);
+		r.next();
+		Integer odemesuresi = r.getInt(1);
 		
 		String query1 = "SELECT p_id FROM plaka WHERE plakano = '"+plaka+"'";
-		Statement s = conn.createStatement();
-		ResultSet r = s.executeQuery(query1);
+		s = conn.createStatement();
+		r = s.executeQuery(query1);
 		r.next();
 		Integer plaka_id = r.getInt(1);
 		
@@ -190,8 +196,10 @@ public class Queries {
 		r = s.executeQuery(query3);
 		r.next();
 		Integer cezaUcreti = r.getInt(1);
-		
-		String query4 = "INSERT INTO yenilencezalar VALUES("+tckn+", nextval('ceza_id'), "+kimlikno+", "+plaka_id+", "+ceza+","+cezaUcreti+",'"+date+"')";
+		String kesilmeTarihi = sdf.format(c.getTime());
+		c.add(Calendar.DAY_OF_MONTH, odemesuresi);
+		String odemeTarihi =  sdf.format(c.getTime());
+		String query4 = "INSERT INTO yenilencezalar VALUES("+tckn+", nextval('ceza_id'), "+kimlikno+", "+plaka_id+", "+ceza+","+cezaUcreti+",'"+kesilmeTarihi+"', '"+odemeTarihi+"')";
 		s = conn.createStatement();
 		if(!s.execute(query4)) {
 			ERROR.error("Ekleme baþarýlý! \nTrigger çalýþtý!");
@@ -302,6 +310,44 @@ public class Queries {
 		
 		ERROR.error("Atama baþarýlý!");
 		
+		s.close();
+		conn.close();
+	}
+	
+	public static void kotuPolis() throws SQLException{
+		try{
+			conn = DriverManager.getConnection(url,user,password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		String query = "SELECT * FROM kotu_polis();";
+		Statement s = conn.createStatement();
+		ResultSet r = s.executeQuery(query);
+		DefaultTableModel model = (DefaultTableModel)POLICE.kotuPolisTable.getModel();
+		
+		while(r.next()) {
+			Object[] buffer = new Object[] {r.getString(1) + " " +r.getString(2)};
+			model.addRow(buffer);
+		}
+		s.close();
+		conn.close();
+	}
+	
+	public static void minCezaSorgula() throws SQLException{
+		try{
+			conn = DriverManager.getConnection(url,user,password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		String query = "SELECT * FROM min_ceza_sorgu()";
+		Statement s = conn.createStatement();
+		ResultSet r = s.executeQuery(query);
+		DefaultTableModel model = (DefaultTableModel)POLICE.minCezaTable.getModel();
+		
+		while(r.next()) {
+			Object[] buffer = new Object[] {r.getString(1) + " " + r.getString(2), + r.getInt(3)};
+			model.addRow(buffer);
+		}
 		s.close();
 		conn.close();
 	}

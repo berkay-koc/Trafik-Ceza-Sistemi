@@ -39,6 +39,8 @@ public class POLICE {
 	static JFormattedTextField tcknSorguField;
 	static JTextField textField;
 	static JTextField textField_1;
+	static JTable kotuPolisTable;
+	static JTable minCezaTable;
 	
 	public static void police() {
 		EventQueue.invokeLater(new Runnable() {
@@ -171,7 +173,7 @@ public class POLICE {
 						new Object[][] {
 						},
 						new String[] {
-							"Ceza ID", "Ýsim", "Soyisim", "Ceza Sebebi", "Ceza Ücreti", "Son Ödeme Tarihi", "Plaka"
+								"Ceza ID", "\u0130sim", "Soyisim", "Ceza Sebebi", "Ceza \u00DCcreti", "Kesilme Tarihi", "Son \u00D6deme Tarihi", "Plaka"
 						}
 					));
 				try {
@@ -210,7 +212,7 @@ public class POLICE {
 			new Object[][] {
 			},
 			new String[] {
-					"Ceza ID", "Ýsim", "Soyisim", "Ceza Sebebi", "Ceza Ücreti", "Son Ödeme Tarihi", "Plaka"
+					"Ceza ID", "\u0130sim", "Soyisim", "Ceza Sebebi", "Ceza \u00DCcreti", "Kesilme Tarihi", "Son \u00D6deme Tarihi", "Plaka"
 			}
 		));
 		yenilencezaScroll.setViewportView(yenilencezaTable);
@@ -305,5 +307,80 @@ public class POLICE {
 		lblAtanlacakYer.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAtanlacakYer.setBounds(257, 78, 122, 27);
 		panel.add(lblAtanlacakYer);
+		
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("Diðer Sorgulamalar", null, panel_1, null);
+		panel_1.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 61, 280, 396);
+		panel_1.add(scrollPane);
+		
+		kotuPolisTable = new JTable();
+		kotuPolisTable.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Ýsim ve Soyisim"
+			}
+		));
+		scrollPane.setViewportView(kotuPolisTable);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(347, 61, 280, 396);
+		panel_1.add(scrollPane_1);
+		
+		minCezaTable = new JTable();
+		minCezaTable.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Ýsim ve Soyisim", "Ceza Sayýsý"
+			}
+		));
+		scrollPane_1.setViewportView(minCezaTable);
+		
+		JButton btnKotuPolisSorgula = new JButton("K\u00F6t\u00FC Polis Sorgula");
+		btnKotuPolisSorgula.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				kotuPolisTable.setModel(new DefaultTableModel(
+						new Object[][] {
+						},
+						new String[] {
+							"Ýsim ve Soyisim"
+						}
+					));
+				try {
+					
+					Queries.kotuPolis();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnKotuPolisSorgula.setBounds(57, 26, 177, 24);
+		panel_1.add(btnKotuPolisSorgula);
+		
+		JButton btnMinCezas = new JButton("Min. 4 Cezas\u0131 Olanlar\u0131 Sorgula");
+		btnMinCezas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				minCezaTable.setModel(new DefaultTableModel(
+						new Object[][] {
+						},
+						new String[] {
+							"Ýsim ve Soyisim", "Ceza Sayýsý"
+						}
+					));
+				try {
+					Queries.minCezaSorgula();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnMinCezas.setBounds(399, 26, 177, 24);
+		panel_1.add(btnMinCezas);
 	}
 }
