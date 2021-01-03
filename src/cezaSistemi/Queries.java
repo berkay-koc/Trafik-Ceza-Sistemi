@@ -13,6 +13,18 @@ public class Queries {
 	final static String password = "1234";
 	static String kimlikno;
 	static Connection conn;
+	final static double cezaKatsayi[] = {
+			1.1,
+			0.95,
+			1.35,
+			1.2,
+			1.8,
+			1.75,
+			1.95,
+			1.25,
+			1.3,
+			1.15
+	};
 	
 	public static void main(String[] args) throws SQLException {
 		Queries sqlconnect = new Queries();
@@ -146,7 +158,7 @@ public class Queries {
 		ResultSet r = s.executeQuery(query);
 		DefaultTableModel model = (DefaultTableModel)POLICE.cezaTipTable.getModel();
 		while(r.next()) {
-			Object[] buffer = new Object[] {r.getInt(1), r.getString(2)};
+			Object[] buffer = new Object[] {r.getInt(1), r.getString(2), r.getInt(3)};
 			model.addRow(buffer);
 		}
 		
@@ -170,12 +182,25 @@ public class Queries {
 		String aracTipi = POLICE.aractipiBox.getSelectedItem().toString();
 		String cezaTipi = POLICE.cezatipiBox.getSelectedItem().toString();
 		
+		String query5 = "SELECT aractürü FROM araclar WHERE ruhsatsahibitc = "+ tckn;
+		Statement s = conn.createStatement();
+		ResultSet r = s.executeQuery(query5);
+		while(r.next()) {
+			if(r.getString(1).compareTo(aracTipi) == 0) {
+			}
+			else if(r.next() == false) {
+				ERROR.error("Hatalý parametre!");
+				return;
+			}
+		}
+		
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar c = Calendar.getInstance();
 		
 		String query0 = "SELECT odemesuresi FROM cezalar WHERE cezaismi = '"+cezaTipi+"'";
-		Statement s = conn.createStatement();
-		ResultSet r = s.executeQuery(query0);
+		s = conn.createStatement();
+		r = s.executeQuery(query0);
 		r.next();
 		Integer odemesuresi = r.getInt(1);
 		
@@ -196,6 +221,7 @@ public class Queries {
 		r = s.executeQuery(query3);
 		r.next();
 		Integer cezaUcreti = r.getInt(1);
+		cezaUcreti = (int)(cezaUcreti*cezaKatsayi[POLICE.aractipiBox.getSelectedIndex()]);
 		String kesilmeTarihi = sdf.format(c.getTime());
 		c.add(Calendar.DAY_OF_MONTH, odemesuresi);
 		String odemeTarihi =  sdf.format(c.getTime());
@@ -352,5 +378,18 @@ public class Queries {
 		conn.close();
 	}
 	
+	public static void zamYap() throws SQLException{
+		try{
+			conn = DriverManager.getConnection(url,user,password);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		String query = "select * from ceza_zammi("+POLICE.cezaNoField.getText()+"," +POLICE.yeniFiyatField.getText()+")";
+		Statement s = conn.createStatement();
+		s.execute(query);
+		
+		s.close();
+		conn.close();
+	}
 }
 

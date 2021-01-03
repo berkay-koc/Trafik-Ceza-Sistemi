@@ -41,6 +41,8 @@ public class POLICE {
 	static JTextField textField_1;
 	static JTable kotuPolisTable;
 	static JTable minCezaTable;
+	static JTextField cezaNoField;
+	static JTextField yeniFiyatField;
 	
 	public static void police() {
 		EventQueue.invokeLater(new Runnable() {
@@ -98,7 +100,7 @@ public class POLICE {
 		cezaKayit.add(plakaField);
 		
 		aractipiBox = new JComboBox();
-		aractipiBox.setModel(new DefaultComboBoxModel(new String[] {"Araba", "Motorsiklet", "Kamyon", "T\u0131r"}));
+		aractipiBox.setModel(new DefaultComboBoxModel(new String[] {"Araba", "Motorsiklet", "Kamyon", "Kamyonet", "T\u0131r", "Minib\u00FCs", "Otob\u00FCs", "Trakt\u00F6r", "\u0130\u015F Makinesi", "Karavan"}));
 		aractipiBox.setBounds(240, 281, 180, 20);
 		cezaKayit.add(aractipiBox);
 		
@@ -229,7 +231,7 @@ public class POLICE {
 		cezaTipleri.setLayout(null);
 		
 		JScrollPane cezaTipScroll = new JScrollPane();
-		cezaTipScroll.setBounds(0, 0, 637, 468);
+		cezaTipScroll.setBounds(0, 0, 637, 378);
 		cezaTipleri.add(cezaTipScroll);
 		
 		cezaTipTable = new JTable();
@@ -237,11 +239,52 @@ public class POLICE {
 			new Object[][] {
 			},
 			new String[] {
-				"Ceza Numarasý", "Ceza Ýsmi"
+				"Ceza Numarasý", "Ceza Ýsmi", "Taban Ücret"
 			}
 			
 		));
 		cezaTipScroll.setViewportView(cezaTipTable);
+		
+		cezaNoField = new JTextField();
+		cezaNoField.setBounds(10, 437, 120, 20);
+		cezaTipleri.add(cezaNoField);
+		cezaNoField.setColumns(10);
+		
+		yeniFiyatField = new JTextField();
+		yeniFiyatField.setColumns(10);
+		yeniFiyatField.setBounds(140, 437, 120, 20);
+		cezaTipleri.add(yeniFiyatField);
+		
+		JLabel lblNewLabel_1 = new JLabel("Ceza Numaras\u0131");
+		lblNewLabel_1.setBounds(10, 412, 120, 14);
+		cezaTipleri.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Yeni Fiyat");
+		lblNewLabel_1_1.setBounds(140, 412, 120, 14);
+		cezaTipleri.add(lblNewLabel_1_1);
+		
+		JButton zamButton = new JButton("Fiyat De\u011Fi\u015Ftir");
+		zamButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					cezaTipTable.setModel(new DefaultTableModel(
+							new Object[][] {
+							},
+							new String[] {
+								"Ceza Numarasý", "Ceza Ýsmi", "Taban Ücret"
+							}
+							
+						));
+					Queries.zamYap();
+					Queries.cezaTablosuInsert();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		zamButton.setBounds(270, 436, 105, 21);
+		cezaTipleri.add(zamButton);
 		
 		JPanel panel_4 = new JPanel();
 		tabbedPane.addTab("Borç ödeme", null, panel_4, null);
