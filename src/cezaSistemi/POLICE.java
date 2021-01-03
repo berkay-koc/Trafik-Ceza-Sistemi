@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Color;
 import javax.swing.JTextField;
+import java.awt.SystemColor;
 
 public class POLICE {
 
@@ -63,111 +64,128 @@ public class POLICE {
 	
 	public POLICE() {
 		initialize();
-		
 	}
-
 	
 	private void initialize() {
 		
 		frmTrafikCezaSistemi = new JFrame();
 		frmTrafikCezaSistemi.setTitle("Trafik Ceza Sistemi");
-		frmTrafikCezaSistemi.setBounds(100, 100, 658, 535);
+		frmTrafikCezaSistemi.setBounds(100, 100, 1050, 700);
 		frmTrafikCezaSistemi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTrafikCezaSistemi.getContentPane().setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(0, 0, 642, 496);
+		tabbedPane.setBounds(0, 0, 1034, 661);
 		frmTrafikCezaSistemi.getContentPane().add(tabbedPane);
 		
 		JPanel cezaKayit = new JPanel();
+		cezaKayit.setBackground(new Color(255, 204, 153));
 		tabbedPane.addTab("Yeni Ceza Kayd\u0131", null, cezaKayit, null);
 		cezaKayit.setLayout(null);
 		
 		isimField = new JFormattedTextField();
-		isimField.setBounds(240, 57, 180, 20);
+		isimField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		isimField.setBounds(440, 71, 200, 30);
 		cezaKayit.add(isimField);
 		
 		soyisimField = new JFormattedTextField();
-		soyisimField.setBounds(240, 114, 180, 20);
+		soyisimField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		soyisimField.setBounds(440, 156, 200, 30);
 		cezaKayit.add(soyisimField);
 		
 		tcknField = new JFormattedTextField();
-		tcknField.setBounds(240, 176, 180, 20);
+		tcknField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		tcknField.setBounds(440, 242, 200, 30);
 		cezaKayit.add(tcknField);
 		
 		plakaField = new JFormattedTextField();
-		plakaField.setBounds(240, 224, 180, 20);
+		plakaField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		plakaField.setBounds(440, 326, 200, 30);
 		cezaKayit.add(plakaField);
 		
 		aractipiBox = new JComboBox();
-		aractipiBox.setModel(new DefaultComboBoxModel(new String[] {"Araba", "Motorsiklet", "Kamyon", "Kamyonet", "T\u0131r", "Minib\u00FCs", "Otob\u00FCs", "Trakt\u00F6r", "\u0130\u015F Makinesi", "Karavan"}));
-		aractipiBox.setBounds(240, 281, 180, 20);
+		aractipiBox.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		aractipiBox.setModel(new DefaultComboBoxModel(new String[] {"Otomobil", "Motorsiklet", "Kamyon", "Kamyonet", "T\u0131r", "Minib\u00FCs", "Otob\u00FCs", "Trakt\u00F6r", "\u0130\u015F Makinesi", "Karavan"}));
+		aractipiBox.setBounds(440, 408, 200, 30);
 		cezaKayit.add(aractipiBox);
 		
 		cezatipiBox = new JComboBox();
-		cezatipiBox.setBounds(240, 337, 180, 20);
+		cezatipiBox.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		cezatipiBox.setBounds(440, 494, 200, 30);
 		cezaKayit.add(cezatipiBox);
 		
 		JButton cezakayitButton = new JButton("Ekle");
+		cezakayitButton.setForeground(new Color(255, 255, 255));
+		cezakayitButton.setBackground(new Color(255, 102, 102));
+		cezakayitButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		cezakayitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Queries.yeniCezaEkle();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		cezakayitButton.setBounds(292, 393, 89, 23);
+		cezakayitButton.setBounds(475, 552, 130, 30);
 		cezaKayit.add(cezakayitButton);
 		
 		JLabel isimLbl = new JLabel("\u0130sim");
+		isimLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		isimLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		isimLbl.setBounds(240, 32, 180, 14);
+		isimLbl.setBounds(440, 40, 200, 20);
 		cezaKayit.add(isimLbl);
 		
 		JLabel soyisimLbl = new JLabel("Soyisim");
+		soyisimLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		soyisimLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		soyisimLbl.setBounds(240, 89, 180, 14);
+		soyisimLbl.setBounds(440, 125, 200, 20);
 		cezaKayit.add(soyisimLbl);
 		
 		JLabel tcknLbl = new JLabel("TC Kimlik Numaras\u0131");
+		tcknLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		tcknLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		tcknLbl.setBounds(240, 151, 180, 14);
+		tcknLbl.setBounds(440, 211, 200, 20);
 		cezaKayit.add(tcknLbl);
 		
 		JLabel plakaLbl = new JLabel("Plaka");
+		plakaLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		plakaLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		plakaLbl.setBounds(240, 199, 180, 14);
+		plakaLbl.setBounds(440, 295, 200, 20);
 		cezaKayit.add(plakaLbl);
 		
 		JLabel aractipLbl = new JLabel("Ara\u00E7 Tipi");
+		aractipLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		aractipLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		aractipLbl.setBounds(240, 256, 180, 14);
+		aractipLbl.setBounds(440, 377, 200, 20);
 		cezaKayit.add(aractipLbl);
 		
 		JLabel cezatipLbl = new JLabel("Ceza Sebebi");
+		cezatipLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		cezatipLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		cezatipLbl.setBounds(240, 317, 180, 14);
+		cezatipLbl.setBounds(440, 463, 200, 20);
 		cezaKayit.add(cezatipLbl);
 		
 		
 		JPanel sorgu = new JPanel();
+		sorgu.setBackground(new Color(204, 255, 204));
 		tabbedPane.addTab("Sorgulama", null, sorgu, null);
 		sorgu.setLayout(null);
 		
 		JLabel tcknSorguLbl = new JLabel("TC Kimlik Numaras\u0131");
+		tcknSorguLbl.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		tcknSorguLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		tcknSorguLbl.setBounds(240, 11, 180, 25);
+		tcknSorguLbl.setBounds(10, 8, 200, 30);
 		sorgu.add(tcknSorguLbl);
 		
 		tcknSorguField = new JFormattedTextField();
 		tcknSorguField.setHorizontalAlignment(SwingConstants.CENTER);
-		tcknSorguField.setBounds(240, 42, 180, 25);
+		tcknSorguField.setBounds(10, 49, 200, 30);
 		sorgu.add(tcknSorguField);
 		
 		JButton cezaSorButton = new JButton("Ceza Sorgula");
+		cezaSorButton.setBackground(new Color(204, 255, 255));
+		cezaSorButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		cezaSorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				kimlikNo = tcknSorguField.getText();
@@ -181,57 +199,82 @@ public class POLICE {
 				try {
 					Queries.cezaSorgula_Police(kimlikNo);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				
 				}
 			}
 		});
-		cezaSorButton.setBounds(121, 84, 169, 25);
+		cezaSorButton.setBounds(425, 48, 130, 30);
 		sorgu.add(cezaSorButton);
 		
 		JButton borcSorButton = new JButton("Bor\u00E7 Sorgula");
+		borcSorButton.setBackground(new Color(204, 255, 255));
+		borcSorButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		borcSorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String kimlikNo = tcknSorguField.getText();
 				try {
 					Queries.borcSorgula_Police();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		borcSorButton.setBounds(450, 84, 177, 24);
+		borcSorButton.setBounds(819, 8, 200, 30);
 		sorgu.add(borcSorButton);
 		
 		JScrollPane yenilencezaScroll = new JScrollPane();
-		yenilencezaScroll.setBounds(17, 120, 384, 337);
+		yenilencezaScroll.setBounds(10, 90, 1009, 532);
 		sorgu.add(yenilencezaScroll);
 		
 		yenilencezaTable = new JTable();
+		yenilencezaTable.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		yenilencezaTable.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-					"Ceza ID", "\u0130sim", "Soyisim", "Ceza Sebebi", "Ceza \u00DCcreti", "Kesilme Tarihi", "Son \u00D6deme Tarihi", "Plaka"
+				"Ceza ID", "\u0130sim", "Soyisim", "Ceza Sebebi", "Ceza \u00DCcreti", "Kesilme Tarihi", "Son \u00D6deme Tarihi", "Plaka"
 			}
 		));
+		yenilencezaTable.getColumnModel().getColumn(0).setPreferredWidth(50);
+		yenilencezaTable.getColumnModel().getColumn(0).setMinWidth(1);
+		yenilencezaTable.getColumnModel().getColumn(0).setMaxWidth(100);
+		yenilencezaTable.getColumnModel().getColumn(1).setPreferredWidth(100);
+		yenilencezaTable.getColumnModel().getColumn(1).setMinWidth(1);
+		yenilencezaTable.getColumnModel().getColumn(1).setMaxWidth(100);
+		yenilencezaTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+		yenilencezaTable.getColumnModel().getColumn(2).setMinWidth(1);
+		yenilencezaTable.getColumnModel().getColumn(2).setMaxWidth(100);
+		yenilencezaTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+		yenilencezaTable.getColumnModel().getColumn(3).setMinWidth(1);
+		yenilencezaTable.getColumnModel().getColumn(3).setMaxWidth(1000);
+		yenilencezaTable.getColumnModel().getColumn(4).setPreferredWidth(65);
+		yenilencezaTable.getColumnModel().getColumn(4).setMinWidth(1);
+		yenilencezaTable.getColumnModel().getColumn(4).setMaxWidth(65);
+		yenilencezaTable.getColumnModel().getColumn(5).setMinWidth(1);
+		yenilencezaTable.getColumnModel().getColumn(5).setMaxWidth(75);
+		yenilencezaTable.getColumnModel().getColumn(6).setPreferredWidth(100);
+		yenilencezaTable.getColumnModel().getColumn(6).setMinWidth(1);
+		yenilencezaTable.getColumnModel().getColumn(6).setMaxWidth(100);
+		yenilencezaTable.getColumnModel().getColumn(7).setMinWidth(1);
+		yenilencezaTable.getColumnModel().getColumn(7).setMaxWidth(100);
 		yenilencezaScroll.setViewportView(yenilencezaTable);
 		
 		borcSorField = new JLabel("");
+		borcSorField.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		borcSorField.setHorizontalAlignment(SwingConstants.CENTER);
 		borcSorField.setBackground(Color.WHITE);
 		borcSorField.setForeground(Color.BLACK);
-		borcSorField.setBounds(492, 119, 98, 25);
+		borcSorField.setBounds(819, 47, 200, 30);
 		sorgu.add(borcSorField);
 		
 		JPanel cezaTipleri = new JPanel();
+		cezaTipleri.setBackground(new Color(102, 153, 153));
 		tabbedPane.addTab("Ceza Tipleri Tablosu", null, cezaTipleri, null);
 		cezaTipleri.setLayout(null);
 		
 		JScrollPane cezaTipScroll = new JScrollPane();
-		cezaTipScroll.setBounds(0, 0, 637, 378);
+		cezaTipScroll.setBounds(10, 11, 1009, 538);
 		cezaTipleri.add(cezaTipScroll);
 		
 		cezaTipTable = new JTable();
@@ -246,24 +289,33 @@ public class POLICE {
 		cezaTipScroll.setViewportView(cezaTipTable);
 		
 		cezaNoField = new JTextField();
-		cezaNoField.setBounds(10, 437, 120, 20);
+		cezaNoField.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		cezaNoField.setBounds(169, 576, 130, 30);
 		cezaTipleri.add(cezaNoField);
 		cezaNoField.setColumns(10);
 		
 		yeniFiyatField = new JTextField();
+		yeniFiyatField.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		yeniFiyatField.setColumns(10);
-		yeniFiyatField.setBounds(140, 437, 120, 20);
+		yeniFiyatField.setBounds(490, 576, 130, 30);
 		cezaTipleri.add(yeniFiyatField);
 		
-		JLabel lblNewLabel_1 = new JLabel("Ceza Numaras\u0131");
-		lblNewLabel_1.setBounds(10, 412, 120, 14);
+		JLabel lblNewLabel_1 = new JLabel("Ceza Numaras\u0131:");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(54, 576, 105, 30);
 		cezaTipleri.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Yeni Fiyat");
-		lblNewLabel_1_1.setBounds(140, 412, 120, 14);
+		JLabel lblNewLabel_1_1 = new JLabel("Yeni Fiyat:");
+		lblNewLabel_1_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.BOLD, 14));
+		lblNewLabel_1_1.setBounds(403, 576, 90, 30);
 		cezaTipleri.add(lblNewLabel_1_1);
 		
 		JButton zamButton = new JButton("Fiyat De\u011Fi\u015Ftir");
+		zamButton.setBackground(new Color(51, 153, 255));
+		zamButton.setForeground(new Color(255, 255, 255));
+		zamButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		zamButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -278,88 +330,102 @@ public class POLICE {
 					Queries.zamYap();
 					Queries.cezaTablosuInsert();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		zamButton.setBounds(270, 436, 105, 21);
+		zamButton.setBounds(750, 576, 200, 30);
 		cezaTipleri.add(zamButton);
 		
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(153, 204, 255));
 		tabbedPane.addTab("Borç ödeme", null, panel_4, null);
 		panel_4.setLayout(null);
 		
 		JLabel cezaOdeLbl = new JLabel("\u00D6demek \u0130stedi\u011Finiz Ceza");
+		cezaOdeLbl.setForeground(new Color(255, 255, 255));
+		cezaOdeLbl.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		cezaOdeLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		cezaOdeLbl.setBounds(180, 47, 246, 22);
+		cezaOdeLbl.setBounds(400, 200, 200, 40);
 		panel_4.add(cezaOdeLbl);
 		
 		cezaOdeBox = new JComboBox();
-		cezaOdeBox.setBounds(180, 80, 246, 22);
+		cezaOdeBox.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		cezaOdeBox.setBounds(400, 250, 200, 40);
 		panel_4.add(cezaOdeBox);
 		
 		JButton cezaOdeButton = new JButton("\u00D6de");
+		cezaOdeButton.setBackground(new Color(51, 102, 51));
+		cezaOdeButton.setForeground(new Color(255, 255, 255));
+		cezaOdeButton.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		cezaOdeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Queries.borcOde_Police();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		cezaOdeButton.setBounds(238, 113, 133, 22);
+		cezaOdeButton.setBounds(440, 310, 120, 40);
 		panel_4.add(cezaOdeButton);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(204, 204, 255));
 		tabbedPane.addTab("Tayin", null, panel, null);
 		panel.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Atama Yap");
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBackground(new Color(255, 204, 0));
+		btnNewButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Queries.atamaYap();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		btnNewButton.setBounds(257, 146, 122, 23);
+		btnNewButton.setBounds(446, 375, 130, 40);
 		panel.add(btnNewButton);
 		
 		textField = new JTextField();
-		textField.setBounds(218, 49, 193, 29);
+		textField.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField.setBounds(410, 220, 200, 40);
 		panel.add(textField);
 		textField.setColumns(10);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(218, 106, 193, 29);
+		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textField_1.setBounds(410, 324, 200, 40);
 		panel.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Polis TCKN");
+		JLabel lblNewLabel = new JLabel("Polis TCKN:");
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(257, 22, 122, 27);
+		lblNewLabel.setBounds(410, 174, 200, 35);
 		panel.add(lblNewLabel);
 		
-		JLabel lblAtanlacakYer = new JLabel("Atan\u0131lacak Yer");
+		JLabel lblAtanlacakYer = new JLabel("Atan\u0131lacak Yer:");
+		lblAtanlacakYer.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblAtanlacakYer.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAtanlacakYer.setBounds(257, 78, 122, 27);
+		lblAtanlacakYer.setBounds(410, 278, 200, 35);
 		panel.add(lblAtanlacakYer);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(153, 153, 153));
 		tabbedPane.addTab("Diðer Sorgulamalar", null, panel_1, null);
 		panel_1.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 61, 280, 396);
+		scrollPane.setBounds(10, 62, 497, 560);
 		panel_1.add(scrollPane);
 		
 		kotuPolisTable = new JTable();
+		kotuPolisTable.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		kotuPolisTable.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
@@ -370,10 +436,11 @@ public class POLICE {
 		scrollPane.setViewportView(kotuPolisTable);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(347, 61, 280, 396);
+		scrollPane_1.setBounds(517, 62, 502, 560);
 		panel_1.add(scrollPane_1);
 		
 		minCezaTable = new JTable();
+		minCezaTable.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		minCezaTable.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
@@ -384,6 +451,9 @@ public class POLICE {
 		scrollPane_1.setViewportView(minCezaTable);
 		
 		JButton btnKotuPolisSorgula = new JButton("K\u00F6t\u00FC Polis Sorgula");
+		btnKotuPolisSorgula.setForeground(new Color(255, 255, 255));
+		btnKotuPolisSorgula.setBackground(new Color(255, 153, 0));
+		btnKotuPolisSorgula.setFont(new Font("Times New Roman", Font.BOLD, 16));
 		btnKotuPolisSorgula.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				kotuPolisTable.setModel(new DefaultTableModel(
@@ -397,15 +467,17 @@ public class POLICE {
 					
 					Queries.kotuPolis();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		btnKotuPolisSorgula.setBounds(57, 26, 177, 24);
+		btnKotuPolisSorgula.setBounds(10, 11, 270, 40);
 		panel_1.add(btnKotuPolisSorgula);
 		
-		JButton btnMinCezas = new JButton("Min. 4 Cezas\u0131 Olanlar\u0131 Sorgula");
+		JButton btnMinCezas = new JButton("3'ten Fazla Cezas\u0131 Olanlar\u0131 Sorgula");
+		btnMinCezas.setForeground(new Color(255, 255, 255));
+		btnMinCezas.setBackground(new Color(255, 153, 0));
+		btnMinCezas.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		btnMinCezas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				minCezaTable.setModel(new DefaultTableModel(
@@ -418,12 +490,11 @@ public class POLICE {
 				try {
 					Queries.minCezaSorgula();
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		btnMinCezas.setBounds(399, 26, 177, 24);
+		btnMinCezas.setBounds(749, 11, 270, 40);
 		panel_1.add(btnMinCezas);
 	}
 }

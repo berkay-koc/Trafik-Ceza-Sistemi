@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
+import java.awt.Font;
 
 public class CITIZEN {
 
@@ -24,9 +26,6 @@ public class CITIZEN {
 	static JTable cezaSorTable;
 	static JComboBox cezaOdeBox;
 	static JTextPane borcSorText;
-	/**
-	 * Launch the application.
-	 */
 	public static void citizen() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -41,32 +40,29 @@ public class CITIZEN {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public CITIZEN() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		frmTrafikCezaSistemi = new JFrame();
 		frmTrafikCezaSistemi.setTitle("Trafik Ceza Sistemi");
-		frmTrafikCezaSistemi.setBounds(100, 100, 658, 535);
+		frmTrafikCezaSistemi.setBounds(100, 100, 1050, 700);
 		frmTrafikCezaSistemi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTrafikCezaSistemi.getContentPane().setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(0, 0, 642, 496);
+		tabbedPane.setBounds(0, 0, 1034, 661);
 		frmTrafikCezaSistemi.getContentPane().add(tabbedPane);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(204, 255, 204));
 		panel_1.setLayout(null);
 		tabbedPane.addTab("Sorgulama", null, panel_1, null);
 		
 		JButton cezaSorButton = new JButton("Ceza Sorgula");
+		cezaSorButton.setBackground(new Color(204, 255, 255));
+		cezaSorButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		cezaSorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				cezaSorTable.setModel(new DefaultTableModel(
@@ -86,10 +82,12 @@ public class CITIZEN {
 			}
 			
 		});
-		cezaSorButton.setBounds(230, 63, 169, 25);
+		cezaSorButton.setBounds(414, 58, 200, 30);
 		panel_1.add(cezaSorButton);
 		
 		JButton borcSorButton = new JButton("Borç Sorgula");
+		borcSorButton.setBackground(new Color(204, 255, 255));
+		borcSorButton.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		borcSorButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -100,11 +98,11 @@ public class CITIZEN {
 				}
 			}
 		});
-		borcSorButton.setBounds(450, 28, 177, 24);
+		borcSorButton.setBounds(819, 17, 200, 30);
 		panel_1.add(borcSorButton);
 		
 		JScrollPane cezaSorScroll = new JScrollPane();
-		cezaSorScroll.setBounds(10, 99, 617, 358);
+		cezaSorScroll.setBounds(10, 99, 1009, 523);
 		panel_1.add(cezaSorScroll);
 		
 		cezaSorTable = new JTable();
@@ -118,24 +116,32 @@ public class CITIZEN {
 		cezaSorScroll.setViewportView(cezaSorTable);
 		
 		borcSorText = new JTextPane();
+		borcSorText.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		borcSorText.setBackground(new Color(204, 255, 204));
 		borcSorText.setEditable(false);
-		borcSorText.setBounds(450, 63, 177, 25);
+		borcSorText.setBounds(869, 58, 150, 30);
 		panel_1.add(borcSorText);
 		
 		JPanel panel_4 = new JPanel();
+		panel_4.setBackground(new Color(153, 204, 255));
 		panel_4.setLayout(null);
 		tabbedPane.addTab("Ceza Ödeme", null, panel_4, null);
 		
 		JLabel cezaOdeLbl = new JLabel("\u00D6demek \u0130stedi\u011Finiz Ceza");
+		cezaOdeLbl.setForeground(new Color(255, 255, 255));
+		cezaOdeLbl.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		cezaOdeLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		cezaOdeLbl.setBounds(180, 47, 246, 22);
+		cezaOdeLbl.setBounds(400, 200, 200, 40);
 		panel_4.add(cezaOdeLbl);
 		
 		cezaOdeBox = new JComboBox();
-		cezaOdeBox.setBounds(180, 80, 246, 22);
+		cezaOdeBox.setBounds(400, 250, 200, 40);
 		panel_4.add(cezaOdeBox);
 		
 		JButton cezaOdeButton = new JButton("\u00D6de");
+		cezaOdeButton.setForeground(new Color(255, 255, 255));
+		cezaOdeButton.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		cezaOdeButton.setBackground(new Color(51, 102, 51));
 		cezaOdeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -146,7 +152,7 @@ public class CITIZEN {
 				}
 			}
 		});
-		cezaOdeButton.setBounds(238, 113, 133, 22);
+		cezaOdeButton.setBounds(440, 310, 120, 40);
 		panel_4.add(cezaOdeButton);
 	}
 }

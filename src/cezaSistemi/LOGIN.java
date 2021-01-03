@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import java.sql.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
 
 public class LOGIN {
 	
@@ -35,22 +37,27 @@ public class LOGIN {
 	
 	private void initialize() {
 		frmTrafikCezaSistemi = new JFrame();
+		frmTrafikCezaSistemi.getContentPane().setBackground(new Color(204, 255, 204));
 		frmTrafikCezaSistemi.setTitle("Trafik Ceza Sistemi");
-		frmTrafikCezaSistemi.setBounds(100, 100, 433, 388);
+		frmTrafikCezaSistemi.setBounds(100, 100, 400, 350);
 		frmTrafikCezaSistemi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmTrafikCezaSistemi.getContentPane().setLayout(null);
 		
 		JFormattedTextField tcknField = new JFormattedTextField();
+		tcknField.setHorizontalAlignment(SwingConstants.CENTER);
 		tcknField.setToolTipText("");
-		tcknField.setBounds(115, 140, 180, 20);
+		tcknField.setBounds(100, 130, 180, 30);
 		frmTrafikCezaSistemi.getContentPane().add(tcknField);
 		
 		JLabel tcknLabel = new JLabel("TC K\u0130ML\u0130K NUMARASI");
+		tcknLabel.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		tcknLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		tcknLabel.setBounds(115, 115, 180, 14);
+		tcknLabel.setBounds(100, 91, 180, 30);
 		frmTrafikCezaSistemi.getContentPane().add(tcknLabel);
 		
 		JButton girisButton = new JButton("Giri\u015F");
+		girisButton.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		girisButton.setBackground(new Color(255, 255, 255));
 		girisButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String tckn = tcknField.getText();
@@ -63,7 +70,7 @@ public class LOGIN {
 				}
 			}
 		});
-		girisButton.setBounds(157, 171, 89, 23);
+		girisButton.setBounds(140, 171, 100, 30);
 		frmTrafikCezaSistemi.getContentPane().add(girisButton);
 	}
 }
