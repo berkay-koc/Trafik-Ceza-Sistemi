@@ -352,7 +352,7 @@ public class Queries {
 		DefaultTableModel model = (DefaultTableModel)POLICE.kotuPolisTable.getModel();
 		
 		while(r.next()) {
-			Object[] buffer = new Object[] {r.getString(1) + " " +r.getString(2)};
+			Object[] buffer = new Object[] {r.getLong(1)};
 			model.addRow(buffer);
 		}
 		s.close();

@@ -430,7 +430,7 @@ public class POLICE {
 			new Object[][] {
 			},
 			new String[] {
-				"Ýsim ve Soyisim"
+				"Kötü Polis TCKN"
 			}
 		));
 		scrollPane.setViewportView(kotuPolisTable);
@@ -460,7 +460,7 @@ public class POLICE {
 						new Object[][] {
 						},
 						new String[] {
-							"Ýsim ve Soyisim"
+							"Kötü Polis TCKN"
 						}
 					));
 				try {
